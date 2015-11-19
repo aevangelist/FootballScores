@@ -1,6 +1,5 @@
 package barqsoft.footballscores;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,7 +7,7 @@ import android.widget.TextView;
 /**
  * Created by yehya khaled on 2/26/2015.
  */
-public class ViewHolder extends RecyclerView.ViewHolder {
+public class ViewHolder  {
     public TextView home_name;
     public TextView away_name;
     public TextView score;
@@ -19,7 +18,6 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     public ViewHolder(View view)
     {
-        super(view);
         home_name = (TextView) view.findViewById(R.id.home_name);
         away_name = (TextView) view.findViewById(R.id.away_name);
         score     = (TextView) view.findViewById(R.id.score_textview);

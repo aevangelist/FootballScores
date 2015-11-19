@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/details_fragment_container"
+    card:card_layout_resourceID="@layout/native_inner_base_expand">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sdgosdhgoisdgoisudogiusdogiusdogsdgsdgosdhgoisdgoisudogiusdogiusdogsdg"
+            android:id="@+id/description"
+            style="@style/MediumLabel"
+            android:padding="8dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/share"
+                android:id="@+id/imageView"
+                android:padding="8dp"
+                android:layout_gravity="center|left"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/share_text"
+                android:id="@+id/textView"
+                style="@style/MediumLabel"
+                android:layout_gravity="center|left"
+                android:gravity="center_horizontal"
+                android:padding="8dp"
+                android:textAllCaps="true"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

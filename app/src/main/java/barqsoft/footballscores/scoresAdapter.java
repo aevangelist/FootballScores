@@ -1,21 +1,16 @@
 package barqsoft.footballscores;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
-import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.Button;
-import android.widget.TextView;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import it.gmariotti.cardslib.library.internal.Card;
+import it.gmariotti.cardslib.library.internal.ViewToClickToExpand;
+import it.gmariotti.cardslib.library.view.CardViewNative;
 
 /**
  * Created by yehya khaled on 2/26/2015.
@@ -35,11 +30,11 @@ public class scoresAdapter extends CursorAdapter
 
     private String FOOTBALL_SCORES_HASHTAG = "#Football_Scores";
 
-    private CardView cardview;
+    private CardViewNative cardview;
 
     public scoresAdapter(Context context,Cursor cursor,int flags)
     {
-        super(context,cursor,flags);
+        super(context, cursor, flags);
     }
 
     @Override
@@ -49,72 +44,22 @@ public class scoresAdapter extends CursorAdapter
         ViewHolder mHolder = new ViewHolder(mItem);
         mItem.setTag(mHolder);
 
-        ButterKnife.bind(this, mItem);
+        //Create a Card
+        Card card = new Card(context);
+        CustomExpandCard expansion = new CustomExpandCard(context);
 
-        cardview = (CardView) mItem.findViewById(R.id.cv);
+        card.addCardExpand(expansion);
+        cardview = (CardViewNative) mItem.findViewById(R.id.cv);
 
-        /**
-         * Setting the pre draw
-         */
-        cardview.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver
-                .OnPreDrawListener() {
+        ViewToClickToExpand viewToClickToExpand =
+                ViewToClickToExpand.builder()
+                        .setupView(cardview);
+        card.setViewToClickToExpand(viewToClickToExpand);
 
-            @Override
-            public boolean onPreDraw() {
-                // initially changing the height to min height
-                ViewGroup.LayoutParams layoutParams = cardview.getLayoutParams();
-                layoutParams.height = 400;
-                cardview.setLayoutParams(layoutParams);
-
-                return true;
-            }
-            });
+        cardview.setCard(card);
 
         //Log.v(FetchScoreTask.LOG_TAG,"new View inflated");
         return mItem;
-    }
-
-    @OnClick(R.id.cv) void onProductDescriptionClicked(View view) {
-        toggleProductDescriptionHeight();
-    }
-
-    /**
-     * Logic for toggling cardview height
-     */
-    private void toggleProductDescriptionHeight() {
-
-        int descriptionViewMinHeight = 400;
-        int descriptionViewFullHeight = 600;
-
-        if (cardview.getHeight() == descriptionViewMinHeight) {
-
-            ValueAnimator anim = ValueAnimator.ofInt(cardview.getMeasuredHeightAndState(),
-                    descriptionViewFullHeight);
-            anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    int val = (Integer) valueAnimator.getAnimatedValue();
-                    ViewGroup.LayoutParams layoutParams = cardview.getLayoutParams();
-                    layoutParams.height = val;
-                    cardview.setLayoutParams(layoutParams);
-                }
-            });
-            anim.start();
-        } else {
-            // collapse
-            ValueAnimator anim = ValueAnimator.ofInt(cardview.getMeasuredHeightAndState(),
-                    descriptionViewMinHeight);
-            anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    int val = (Integer) valueAnimator.getAnimatedValue();
-                    ViewGroup.LayoutParams layoutParams = cardview.getLayoutParams();
-                    layoutParams.height = val;
-                    cardview.setLayoutParams(layoutParams);
-                }
-            });
-            anim.start();
-        }
     }
 
     @Override
@@ -132,10 +77,11 @@ public class scoresAdapter extends CursorAdapter
                 cursor.getString(COL_AWAY)
         ));
 
-        Log.v("ScoresAdapter", mHolder.home_name.getText() + " Vs. " + mHolder.away_name.getText() + " id " + String.valueOf(mHolder.match_id));
+        //Log.v("ScoresAdapter", mHolder.home_name.getText() + " Vs. " + mHolder.away_name.getText() + " id " + String.valueOf(mHolder.match_id));
         //Log.v("ScoresAdapter", String.valueOf(detail_match_id));
 
-        LayoutInflater vi = (LayoutInflater) context.getApplicationContext()
+        //fill in expansion
+        /*LayoutInflater vi = (LayoutInflater) context.getApplicationContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = vi.inflate(R.layout.detail_fragment, null);
         ViewGroup container = (ViewGroup) view.findViewById(R.id.details_fragment_container);
@@ -148,6 +94,7 @@ public class scoresAdapter extends CursorAdapter
             TextView match_day = (TextView) v.findViewById(R.id.matchday_textview);
             match_day.setText(Utilies.getMatchDay(cursor.getInt(COL_MATCHDAY),
                     cursor.getInt(COL_LEAGUE)));
+
             TextView league = (TextView) v.findViewById(R.id.league_textview);
             league.setText(Utilies.getLeague(cursor.getInt(COL_LEAGUE)));
             Button share_button = (Button) v.findViewById(R.id.share_button);
@@ -164,7 +111,7 @@ public class scoresAdapter extends CursorAdapter
         else
         {
             container.removeAllViews();
-        }
+        }*/
 
     }
     public Intent createShareForecastIntent(String ShareText) {

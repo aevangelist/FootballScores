@@ -5,6 +5,8 @@
     <color name="primary_dark">#004D40</color>
     <color name="accent">#E0F2F1</color>
     <color name="white_opaque">#FFFFFF</color>
+    <color name="card_backgroundExpand">#FFFFFF</color>
+
 
     <color name="blue01">#0099CC</color>
     <color name="blue02">#079DD0</color>
