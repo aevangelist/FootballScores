@@ -14,19 +14,19 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/homeTeamLogo"
                 android:src="@drawable/ic_launcher"
                 android:layout_weight="1"
-                android:layout_margin="8dp" />
+                android:layout_margin="5dp" />
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/awayTeamLogo"
                 android:src="@drawable/ic_launcher"
                 android:layout_weight="1"
-                android:layout_margin="8dp" />
+                android:layout_margin="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -67,7 +67,8 @@
                 android:gravity="fill_vertical"
                 android:layout_gravity="right"
                 android:paddingRight="10dp"
-                style="@style/WidgetScore" />
+                style="@style/WidgetScore"
+                android:layout_marginRight="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -78,7 +79,8 @@
                 android:gravity="fill_vertical"
                 android:layout_gravity="right"
                 android:paddingRight="10dp"
-                style="@style/WidgetScore" />
+                style="@style/WidgetScore"
+                android:layout_marginRight="10dp" />
         </LinearLayout>
 
 </LinearLayout>

@@ -4,8 +4,8 @@ package barqsoft.footballscores.widget;
  * Created by aevangelista on 15-12-02.
  */
 public class WidgetListItem {
-    private String homeLogo;
-    private String awayLogo;
+    private int homeLogo;
+    private int awayLogo;
     private String homeTeam;
     private String awayTeam;
     private String homeScore;
@@ -14,7 +14,7 @@ public class WidgetListItem {
     public WidgetListItem(){
     }
 
-    public WidgetListItem(String hl, String al, String ht, String at, String hs, String as){
+    public WidgetListItem(int hl, int al, String ht, String at, String hs, String as){
         this.homeLogo = hl;
         this.awayLogo = al;
         this.homeTeam = ht;
@@ -23,11 +23,11 @@ public class WidgetListItem {
         this.awayScore = as;
     }
 
-    public String getHomeLogo(){
+    public int getHomeLogo(){
         return homeLogo;
     }
 
-    public String getAwayLogo(){
+    public int getAwayLogo(){
         return awayLogo;
     }
 
@@ -47,11 +47,11 @@ public class WidgetListItem {
         return awayScore;
     }
 
-    public void setHomeLogo(String s){
+    public void setHomeLogo(int s){
         this.homeLogo = s;
     }
 
-    public void setAwayLogo(String s){
+    public void setAwayLogo(int s){
         this.awayLogo = s;
     }
 

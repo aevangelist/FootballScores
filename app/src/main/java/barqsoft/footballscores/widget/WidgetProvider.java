@@ -1,11 +1,14 @@
 package barqsoft.footballscores.widget;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.ScoresAdapter;
@@ -15,6 +18,7 @@ import barqsoft.footballscores.ScoresAdapter;
  */
 public class WidgetProvider extends AppWidgetProvider {
 
+    private static final String SYNC_CLICKED = "automaticWidgetSyncButtonClick";
     public ScoresAdapter adapter;
 
     /**
@@ -34,10 +38,12 @@ public class WidgetProvider extends AppWidgetProvider {
         for (int i = 0; i < N; ++i) {
             RemoteViews remoteViews = updateWidgetListView(context,
                     appWidgetIds[i]);
+
             appWidgetManager.updateAppWidget(appWidgetIds[i],
                     remoteViews);
         }
         super.onUpdate(context, appWidgetManager, appWidgetIds);
+
     }
 
     private RemoteViews updateWidgetListView(Context context,
@@ -46,6 +52,8 @@ public class WidgetProvider extends AppWidgetProvider {
         //Layout for widget
         RemoteViews remoteViews = new RemoteViews(
                 context.getPackageName(),R.layout.widget);
+
+        remoteViews.setOnClickPendingIntent(R.id.refreshIcon, getPendingSelfIntent(context, SYNC_CLICKED));
 
         //RemoteViews Service needed to provide adapter for ListView
         Intent svcIntent = new Intent(context, WidgetService.class);
@@ -56,12 +64,41 @@ public class WidgetProvider extends AppWidgetProvider {
 
         //setting adapter to listview of the widget
         remoteViews.setRemoteAdapter(R.id.widgetListView, svcIntent);
-
-        //setting an empty view in case of no data
         remoteViews.setEmptyView(R.id.widgetListView, R.id.emptyView);
 
 
         return remoteViews;
     }
+
+    protected PendingIntent getPendingSelfIntent(Context context, String action) {
+        Intent intent = new Intent(context, getClass());
+        intent.setAction(action);
+        return PendingIntent.getBroadcast(context, 0, intent, 0);
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        // TODO Auto-generated method stub
+        super.onReceive(context, intent);
+
+        if (SYNC_CLICKED.equals(intent.getAction())) {
+
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+
+            RemoteViews remoteViews;
+            ComponentName watchWidget;
+
+            remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
+            watchWidget = new ComponentName(context, WidgetActivity.class);
+
+            //DO SOMETHING
+            Toast.makeText(context, "Widget Refreshed",
+                    Toast.LENGTH_LONG).show();
+
+            appWidgetManager.updateAppWidget(watchWidget, remoteViews);
+
+        }
+    }
+
 
 }

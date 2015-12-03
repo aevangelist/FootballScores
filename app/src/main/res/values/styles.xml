@@ -88,14 +88,14 @@
     </style>
 
     <style name="WidgetLabel">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/gray1</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="WidgetScore">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/gray1</item>
         <item name="android:fontFamily">sans-serif</item>

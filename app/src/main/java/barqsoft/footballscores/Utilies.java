@@ -56,6 +56,17 @@ public class Utilies
         }
     }
 
+    public static String getScore(int score){
+        if(score < 0)
+        {
+            return " - ";
+        }
+        else
+        {
+            return String.valueOf(score);
+        }
+    }
+
     public static String getScores(int home_goals,int awaygoals)
     {
         if(home_goals < 0 || awaygoals < 0)
