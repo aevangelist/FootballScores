@@ -80,4 +80,32 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
+    <style name="WidgetTitle">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white_opaque</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="WidgetLabel">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/gray1</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="WidgetScore">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/gray1</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:background">@color/gray2</item>
+    </style>
+
 </resources>

@@ -39,8 +39,8 @@ public class myFetchService extends IntentService
     @Override
     protected void onHandleIntent(Intent intent)
     {
-        getData("n3");
-        getData("p3");
+        getData("n2");
+        getData("p2");
 
         return;
     }
@@ -142,6 +142,7 @@ public class myFetchService extends IntentService
         final String BUNDESLIGA2 = "395";
         final String PRIMERA_DIVISION = "399";
 
+        //Additional league codes for testing
         final String LIGUE1 = "396";
         final String LIGUE2 = "397";
         final String SEGUNDA_DIVISION = "400";
@@ -163,6 +164,11 @@ public class myFetchService extends IntentService
         final String HOME_GOALS = "goalsHomeTeam";
         final String AWAY_GOALS = "goalsAwayTeam";
         final String MATCH_DAY = "matchday";
+
+        final String HOME = "homeTeam";
+        final String AWAY = "awayTeam";
+        final String HREF = "href";
+
 
         //Match data
         String League = null;
@@ -197,14 +203,14 @@ public class myFetchService extends IntentService
                         League.equals(SERIE_A)             ||
                         League.equals(BUNDESLIGA1)         ||
                         League.equals(BUNDESLIGA2)         ||
-                        League.equals(PRIMERA_DIVISION)    ||
+                        League.equals(PRIMERA_DIVISION))    /*||
 
                         League.equals(LIGUE1) ||
                         League.equals(LIGUE2) ||
                         League.equals(SEGUNDA_DIVISION) ||
                         League.equals(PRIMERA_LIGA) ||
                         League.equals(Bundesliga3) ||
-                        League.equals(EREDIVISIE))
+                        League.equals(EREDIVISIE))*/
                 {
                     match_id = match_data.getJSONObject(LINKS).getJSONObject(SELF).
                             getString("href");
@@ -239,11 +245,14 @@ public class myFetchService extends IntentService
                         Log.d(LOG_TAG, "error here!");
                         Log.e(LOG_TAG,e.getMessage());
                     }
+
                     Home = match_data.getString(HOME_TEAM);
                     Away = match_data.getString(AWAY_TEAM);
                     Home_goals = match_data.getJSONObject(RESULT).getString(HOME_GOALS);
                     Away_goals = match_data.getJSONObject(RESULT).getString(AWAY_GOALS);
                     match_day = match_data.getString(MATCH_DAY);
+
+
                     ContentValues match_values = new ContentValues();
                     match_values.put(DatabaseContract.scores_table.MATCH_ID,match_id);
                     match_values.put(DatabaseContract.scores_table.DATE_COL,mDate);
@@ -267,6 +276,7 @@ public class myFetchService extends IntentService
                     values.add(match_values);
                 }
             }
+
             int inserted_data = 0;
             ContentValues[] insert_data = new ContentValues[values.size()];
             values.toArray(insert_data);

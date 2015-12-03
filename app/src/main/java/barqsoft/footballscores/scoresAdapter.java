@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,18 +45,18 @@ public class scoresAdapter extends CursorAdapter
         ViewHolder mHolder = new ViewHolder(mItem);
         mItem.setTag(mHolder);
 
-        //Create a Card
+        //Create a Card and Expansion
         Card card = new Card(context);
         CustomExpandCard expansion = new CustomExpandCard(context);
 
-        card.addCardExpand(expansion);
         cardview = (CardViewNative) mItem.findViewById(R.id.cv);
 
         ViewToClickToExpand viewToClickToExpand =
                 ViewToClickToExpand.builder()
                         .setupView(cardview);
-        card.setViewToClickToExpand(viewToClickToExpand);
 
+        card.setViewToClickToExpand(viewToClickToExpand);
+        card.addCardExpand(expansion);
         cardview.setCard(card);
 
         //Log.v(FetchScoreTask.LOG_TAG,"new View inflated");
@@ -77,10 +78,10 @@ public class scoresAdapter extends CursorAdapter
                 cursor.getString(COL_AWAY)
         ));
 
-        //Log.v("ScoresAdapter", mHolder.home_name.getText() + " Vs. " + mHolder.away_name.getText() + " id " + String.valueOf(mHolder.match_id));
+        Log.v("ScoresAdapter", mHolder.home_name.getText() + " Vs. " + mHolder.away_name.getText() + " id " + String.valueOf(mHolder.match_id));
         //Log.v("ScoresAdapter", String.valueOf(detail_match_id));
 
-        //fill in expansion
+        //Fill in expansion
         /*LayoutInflater vi = (LayoutInflater) context.getApplicationContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = vi.inflate(R.layout.detail_fragment, null);

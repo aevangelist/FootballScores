@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="250dp"
+    android:layout_height="110dp"
+    android:id="@+id/bounding_box"
+    android:padding="@dimen/widget_margin"
+    android:elevation="5dp"
+    android:background="#4f4f4f">
+<LinearLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/widget_frame">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textView2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/body">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/homeTeamLogo"
+                        android:src="@drawable/ic_launcher"
+                        android:layout_weight="1"
+                        android:layout_margin="8dp" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/awayTeamLogo"
+                        android:src="@drawable/ic_launcher"
+                        android:layout_weight="1"
+                        android:layout_margin="8dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/homeTeamName"
+                        android:layout_weight="1"
+                        android:gravity="fill_vertical"
+                        style="@style/WidgetLabel" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/awayTeamName"
+                        android:layout_weight="1"
+                        android:gravity="fill_vertical"
+                        style="@style/WidgetLabel" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:id="@+id/homeTeamScore"
+                        android:layout_weight="1"
+                        android:gravity="fill_vertical"
+                        android:layout_gravity="right"
+                        android:paddingRight="10dp"
+                        style="@style/WidgetScore" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:id="@+id/awayTeamScore"
+                        android:layout_weight="1"
+                        android:gravity="fill_vertical"
+                        android:layout_gravity="right"
+                        android:paddingRight="10dp"
+                        style="@style/WidgetScore" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/upButton"
+                    android:layout_weight="1"
+                    android:src="@drawable/up"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/downButton"
+                    android:layout_weight="1"
+                    android:src="@drawable/down"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:id="@+id/refreshIcon"
+            android:src="@drawable/refresh"
+            android:gravity="fill_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/statusText"
+            android:layout_weight="1"
+            android:gravity="fill_vertical"
+            android:layout_marginLeft="20dp"
+            style="@style/WidgetLabel"
+            android:text="Viewing 1 out of 10 matches today" />
+    </LinearLayout>
+
+</LinearLayout>
+
+</FrameLayout>
