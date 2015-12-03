@@ -50,10 +50,11 @@
             android:visibility="gone" />
 
         <ListView
+            style="@style/ListViewWithDividerStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/widgetListView"
-            android:background="@color/white_70" />
+            android:background="@color/white_70"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -108,4 +108,10 @@
         <item name="android:background">@color/gray2</item>
     </style>
 
+    <style name="ListViewWithDividerStyle">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:divider">@color/gray2</item>
+        <item name="android:dividerHeight">4px</item>
+    </style>
+
 </resources>

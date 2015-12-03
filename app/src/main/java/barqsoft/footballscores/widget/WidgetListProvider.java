@@ -4,20 +4,28 @@ package barqsoft.footballscores.widget;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService.RemoteViewsFactory;
 
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import barqsoft.footballscores.DatabaseContract;
 import barqsoft.footballscores.R;
+import barqsoft.footballscores.ScoresAdapter;
+import barqsoft.footballscores.ScoresProvider;
 
 /**
  * Created by aevangelista on 15-12-02.
  */
 public class WidgetListProvider implements RemoteViewsFactory {
 
-    private ArrayList listItemList = new ArrayList();
+    private ScoresAdapter adapter;
+    private ScoresProvider provider;
+    private ArrayList<WidgetListItem> listItemList = new ArrayList();
     private Context context = null;
     private int appWidgetId;
 
@@ -30,20 +38,43 @@ public class WidgetListProvider implements RemoteViewsFactory {
     }
 
     private void populateListItem() {
-        for (int i = 0; i < 10; i++) {
-            WidgetListItem listItem = new WidgetListItem();
-            listItem.homeTeam = "LALALA";
-            listItem.awayTeam = "ALALLALA";
-            listItem.homeScore = "5";
-            listItem.awayScore = "5";
-
-            listItemList.add(listItem);
-        }
-
+        //Do nothing
     }
 
     @Override
     public void onCreate() {
+
+        provider = new ScoresProvider();
+
+        int i = 3; //Set as 2 for today's date; 3 as tomorrow's date
+        Date date = new Date(System.currentTimeMillis()+((3-2)*86400000));
+        SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
+
+        String[] fragmentdate = new String[1];
+        fragmentdate[0] = mformat.format(date);
+
+        Cursor cursor = provider.query(DatabaseContract.scores_table.buildScoreWithDate(),
+                null, null, fragmentdate, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    WidgetListItem listItem = new WidgetListItem();
+
+                    listItem.setHomeTeam(cursor.getString(adapter.COL_HOME));
+                    listItem.setAwayTeam(cursor.getString(adapter.COL_AWAY));
+                    listItem.setHomeScore(cursor.getString(adapter.COL_HOME_GOALS));
+                    listItem.setAwayScore(cursor.getString(adapter.COL_AWAY_GOALS));
+
+                    listItemList.add(listItem);
+
+                    Log.d("log", "Data: " + cursor.getString(adapter.COL_HOME) +
+                            " VS " + cursor.getString(adapter.COL_AWAY));
+                    cursor.moveToNext();
+                }
+            }
+            cursor.close();
+        }
 
     }
 
@@ -81,14 +112,13 @@ public class WidgetListProvider implements RemoteViewsFactory {
         final RemoteViews remoteView = new RemoteViews(
                 context.getPackageName(), R.layout.widget_list_item);
 
-        WidgetListItem listItem = (WidgetListItem) listItemList.get(position);
+        WidgetListItem listItem = listItemList.get(position);
 
         //Set up UI on list item
-        remoteView.setTextViewText(R.id.homeTeamName, listItem.homeTeam);
-        remoteView.setTextViewText(R.id.awayTeamName, listItem.awayTeam);
-        remoteView.setTextViewText(R.id.homeTeamScore, listItem.homeScore);
-        remoteView.setTextViewText(R.id.awayTeamScore, listItem.awayScore);
-
+        remoteView.setTextViewText(R.id.homeTeamName, listItem.getHomeTeam());
+        remoteView.setTextViewText(R.id.awayTeamName, listItem.getAwayTeam());
+        remoteView.setTextViewText(R.id.homeTeamScore, listItem.getHomeScore());
+        remoteView.setTextViewText(R.id.awayTeamScore, listItem.getAwayScore());
 
         return remoteView;
     }
@@ -100,7 +130,7 @@ public class WidgetListProvider implements RemoteViewsFactory {
 
     @Override
     public int getViewTypeCount() {
-        return 0;
+        return 1;
     }
 
 }

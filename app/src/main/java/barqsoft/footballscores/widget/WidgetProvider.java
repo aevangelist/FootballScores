@@ -8,12 +8,14 @@ import android.net.Uri;
 import android.widget.RemoteViews;
 
 import barqsoft.footballscores.R;
+import barqsoft.footballscores.ScoresAdapter;
 
 /**
  * Created by aevangelista on 15-11-22.
  */
 public class WidgetProvider extends AppWidgetProvider {
 
+    public ScoresAdapter adapter;
 
     /**
      * this method is called every 30 mins as specified on widgetinfo.xml
@@ -53,11 +55,12 @@ public class WidgetProvider extends AppWidgetProvider {
                 svcIntent.toUri(Intent.URI_INTENT_SCHEME)));
 
         //setting adapter to listview of the widget
-        remoteViews.setRemoteAdapter(R.id.widgetListView,
-                svcIntent);
+        remoteViews.setRemoteAdapter(R.id.widgetListView, svcIntent);
 
         //setting an empty view in case of no data
         remoteViews.setEmptyView(R.id.widgetListView, R.id.emptyView);
+
+
         return remoteViews;
     }
 
