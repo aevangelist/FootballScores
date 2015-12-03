@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:elevation="6dp"
-    android:background="#ffffff">
+    android:background="@color/white_70">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -21,7 +21,16 @@
             style="@style/WidgetTitle"
             android:password="false"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:id="@+id/refreshIcon"
+            android:src="@drawable/refresh"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -44,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/widgetListView"
-            android:background="#ffffff" />
+            android:background="@color/white_70" />
     </LinearLayout>
 
 </LinearLayout>

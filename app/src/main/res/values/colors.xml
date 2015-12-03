@@ -5,6 +5,7 @@
     <color name="primary_dark">#004D40</color>
     <color name="accent">#E0F2F1</color>
     <color name="white_opaque">#FFFFFF</color>
+    <color name="white_70">#B3FFFFFF</color>
     <color name="gray1">#5c5c5c</color>
     <color name="gray2">#cdcdcd</color>
     <color name="card_backgroundExpand">#FFFFFF</color>
