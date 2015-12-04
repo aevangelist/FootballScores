@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,11 +28,13 @@ public class PagerFragment extends Fragment
     private PageAdapter pageAdapter;
     private MainScreenFragment[] viewFragments = new MainScreenFragment[5];
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View rootView = inflater.inflate(R.layout.pager_fragment, container, false);
+
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
         viewPager = (ViewPager) rootView.findViewById(R.id.pager);
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tab_layout);

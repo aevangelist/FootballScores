@@ -4,4 +4,11 @@
     tools:context=".MainActivity" tools:ignore="MergeRootFrame"
     android:background="#f1f1f1">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        />
+
 </FrameLayout>

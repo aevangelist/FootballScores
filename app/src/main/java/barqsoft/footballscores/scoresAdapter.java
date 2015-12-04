@@ -1,7 +1,6 @@
 package barqsoft.footballscores;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
@@ -49,6 +48,20 @@ public class ScoresAdapter extends CursorAdapter
         Card card = new Card(context);
         CustomExpandCard expansion = new CustomExpandCard(context);
 
+        //Build the expansion description
+        String matchDayText = Utilies.getMatchDay(cursor.getInt(COL_MATCHDAY),
+                cursor.getInt(COL_LEAGUE));
+        String leagueText = Utilies.getLeague(cursor.getInt(COL_LEAGUE));
+        String homeTeamText = cursor.getString(COL_HOME);
+        String awayTeamText = cursor.getString(COL_AWAY);
+        String scoresText = Utilies.getScores(cursor.getInt(COL_HOME_GOALS), cursor.getInt(COL_AWAY_GOALS));
+
+        expansion.setMatchDay(matchDayText);
+        expansion.setLeague(leagueText);
+        expansion.setHomeTeam(homeTeamText);
+        expansion.setAwayTeam(awayTeamText);
+        expansion.setScore(scoresText);
+
         cardview = (CardViewNative) mItem.findViewById(R.id.cv);
 
         ViewToClickToExpand viewToClickToExpand =
@@ -78,49 +91,8 @@ public class ScoresAdapter extends CursorAdapter
                 cursor.getString(COL_AWAY)
         ));
 
-        Log.v("ScoresAdapter", mHolder.home_name.getText() + " Vs. " + mHolder.away_name.getText() + " id " + String.valueOf(mHolder.match_id));
-        //Log.v("ScoresAdapter", String.valueOf(detail_match_id));
+        Log.v("ScoresAdapter", mHolder.home_name.getText() + " vs " + mHolder.away_name.getText() + " id " + String.valueOf(mHolder.match_id));
 
-        //Fill in expansion
-        /*LayoutInflater vi = (LayoutInflater) context.getApplicationContext()
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = vi.inflate(R.layout.detail_fragment, null);
-        ViewGroup container = (ViewGroup) view.findViewById(R.id.details_fragment_container);
-        if(mHolder.match_id == detail_match_id)
-        {
-            //Log.v(FetchScoreTask.LOG_TAG,"will insert extraView");
-
-            container.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
-                    , ViewGroup.LayoutParams.MATCH_PARENT));
-            TextView match_day = (TextView) v.findViewById(R.id.matchday_textview);
-            match_day.setText(Utilies.getMatchDay(cursor.getInt(COL_MATCHDAY),
-                    cursor.getInt(COL_LEAGUE)));
-
-            TextView league = (TextView) v.findViewById(R.id.league_textview);
-            league.setText(Utilies.getLeague(cursor.getInt(COL_LEAGUE)));
-            Button share_button = (Button) v.findViewById(R.id.share_button);
-            share_button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v)
-                {
-                    //add Share Action
-                    context.startActivity(createShareForecastIntent(mHolder.home_name.getText()+" "
-                    +mHolder.score.getText()+" "+mHolder.away_name.getText() + " "));
-                }
-            });
-        }
-        else
-        {
-            container.removeAllViews();
-        }*/
-
-    }
-    public Intent createShareForecastIntent(String ShareText) {
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, ShareText + FOOTBALL_SCORES_HASHTAG);
-        return shareIntent;
     }
 
 }

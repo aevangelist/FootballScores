@@ -1,8 +1,10 @@
 package barqsoft.footballscores;
 
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,11 +16,13 @@ public class MainActivity extends AppCompatActivity
     public static String LOG_TAG = "MainActivity";
     private final String save_tag = "Save Test";
     private PagerFragment my_main;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Log.d(LOG_TAG, "Reached MainActivity onCreate");
         if (savedInstanceState == null) {
             my_main = new PagerFragment();
@@ -26,6 +30,9 @@ public class MainActivity extends AppCompatActivity
                     .add(R.id.container, my_main)
                     .commit();
         }
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
 
@@ -46,9 +53,21 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about)
         {
-            Intent start_about = new Intent(this,AboutActivity.class);
-            startActivity(start_about);
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle(getResources().getString(R.string.about));
+            alertDialog.setMessage(getResources().getString(R.string.about_text));
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.okay),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
             return true;
+
+            /*Intent start_about = new Intent(this, AboutActivity.class);
+            startActivity(start_about);
+            return true;*/
         }
 
         return super.onOptionsItemSelected(item);
