@@ -6,10 +6,19 @@ package barqsoft.footballscores;
 public class Utilies
 {
     public static final int SERIE_A = 357;
-    public static final int PREMIER_LEGAUE = 354;
+    public static final int PREMIER_LEAGUE = 354;
     public static final int CHAMPIONS_LEAGUE = 362;
     public static final int PRIMERA_DIVISION = 358;
     public static final int BUNDESLIGA = 351;
+    public static final int BUNDESLIGA2 = 395;
+
+    //Additional league codes for testing
+    public static final int LIGUE1 = 396;
+    public static final int LIGUE2 = 397;
+    public static final int SEGUNDA_DIVISION = 400;
+    public static final int PRIMERA_LIGA = 402;
+    public static final int Bundesliga3 = 403;
+    public static final int EREDIVISIE = 404;
 
 
     public static String getLeague(int league_num)
@@ -17,12 +26,20 @@ public class Utilies
         switch (league_num)
         {
             case SERIE_A : return "Seria A";
-            case PREMIER_LEGAUE : return "Premier League";
+            case PREMIER_LEAGUE: return "Premier League";
             case CHAMPIONS_LEAGUE : return "UEFA Champions League";
             case PRIMERA_DIVISION : return "Primera Division";
             case BUNDESLIGA : return "Bundesliga";
 
-            default: return "Not known League Please report";
+            case BUNDESLIGA2 : return "Bundesliga 2";
+            case LIGUE1 : return "Ligue 1";
+            case LIGUE2 : return "Ligue 2";
+            case SEGUNDA_DIVISION : return "Segunda Division";
+            case PRIMERA_LIGA : return "Primera Liga";
+            case Bundesliga3 : return "Bundesliga 3";
+            case EREDIVISIE : return "Eredivisie";
+
+            default: return "Unknown";
         }
     }
     public static String getMatchDay(int match_day,int league_num)

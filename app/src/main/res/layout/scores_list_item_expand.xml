@@ -15,16 +15,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sdgosdhgoisdgoisudogiusdogiusdogsdgsdgosdhgoisdgoisudogiusdogiusdogsdg"
+            android:text="Description"
             android:id="@+id/description"
             style="@style/MediumLabel"
             android:padding="8dp" />
 
         <LinearLayout
+            android:id="@+id/sharePanel"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@color/primary">
 
             <ImageView
                 android:layout_width="35dp"
@@ -32,8 +36,7 @@
                 android:src="@drawable/share"
                 android:id="@+id/imageView"
                 android:padding="8dp"
-                android:layout_gravity="center|left"
-                />
+                android:layout_gravity="center|left"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -44,7 +47,9 @@
                 android:layout_gravity="center|left"
                 android:gravity="center_horizontal"
                 android:padding="8dp"
-                android:textAllCaps="true"/>
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textColor="@color/white_opaque"/>
 
         </LinearLayout>
 
