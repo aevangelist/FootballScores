@@ -101,7 +101,7 @@
                         android:layout_weight="1"
                         android:gravity="fill_vertical"
                         android:layout_gravity="right"
-                        android:paddingRight="10dp"
+                        android:paddingEnd="10dp"
                         style="@style/WidgetScore" />
 
                     <TextView
@@ -112,7 +112,7 @@
                         android:layout_weight="1"
                         android:gravity="fill_vertical"
                         android:layout_gravity="right"
-                        android:paddingRight="10dp"
+                        android:paddingEnd="10dp"
                         style="@style/WidgetScore" />
                 </LinearLayout>
             </LinearLayout>
@@ -152,7 +152,7 @@
             android:src="@drawable/refresh"
             android:gravity="fill_vertical"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginStart="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -160,7 +160,7 @@
             android:id="@+id/statusText"
             android:layout_weight="1"
             android:gravity="fill_vertical"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             style="@style/WidgetLabel"
             android:text="Viewing 1 out of 10 matches today" />
     </LinearLayout>
