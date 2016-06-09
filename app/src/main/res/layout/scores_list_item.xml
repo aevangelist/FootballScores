@@ -25,10 +25,12 @@
             android:layout_weight="1"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
-                android:id="@+id/home_crest" />
+                android:id="@+id/home_crest"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,10 +71,12 @@
             android:layout_weight="1"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
-                android:id="@+id/away_crest"/>
+                android:id="@+id/away_crest"
+                android:scaleType="fitEnd"
+                android:adjustViewBounds="true"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -7,6 +7,7 @@
         <dimen name="share_button_margin">150dp</dimen>
         <dimen name="TeamNames">17sp</dimen>
         <dimen name="Score">30sp</dimen>
+        <dimen name="Matchday">30sp</dimen>
         <dimen name="League">15sp</dimen>
     </resources>
 

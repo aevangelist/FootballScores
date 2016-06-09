@@ -25,6 +25,9 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     private String[] fragmentdate = new String[1];
     private int last_selected_item = -1;
 
+    public static final int COL_HOMECREST = 10;
+    public static final int COL_AWAYCREST = 11;
+
     public MainScreenFragment()
     {
     }
@@ -94,6 +97,7 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
         {
             i++;
             cursor.moveToNext();
+
         }
         //Log.v(FetchScoreTask.LOG_TAG,"Loader query: " + String.valueOf(i));
         mAdapter.swapCursor(cursor);
